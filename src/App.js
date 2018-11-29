@@ -9,24 +9,24 @@ class App extends Component {
     this.ref = firebase.firestore().collection('request_cartoon');
     this.unsubscribe = null;
     this.state = {
-      request_cartoon: []
+      cartoons: []
     };
   }
 
   onCollectionUpdate = (querySnapshot) => {
-    const request_cartoon = [];
+    const cartoons = [];
     querySnapshot.forEach((doc) => {
-      const { fullname, email, cartoon_name } = doc.data();
-      request_cartoon.push({
+      const { fullname, email, cartoonName } = doc.data();
+      cartoons.push({
         key: doc.id,
         doc, // DocumentSnapshot
         fullname,
         email,
-        cartoon_name,
+        cartoonName,
       });
     });
     this.setState({
-      request_cartoon
+      cartoons
    });
   }
 
@@ -36,29 +36,29 @@ class App extends Component {
 
   render() {
     return (
-      <div class="container">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              CARTOON LIST
+      <div className="container">
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            <h3 className="panel-title">
+              CARTOON LISTS
             </h3>
           </div>
-          <div class="panel-body">
-            <h4><Link to="/create" class="btn btn-primary">Add Cartoon</Link></h4>
-            <table class="table table-stripe">
+          <div className="panel-body">
+            <h4><Link to="/create" className="btn btn-primary">Add Cartoon</Link></h4>
+            <table className="table table-stripe">
               <thead>
                 <tr>
-                  <th>Fullname</th>
-                  <th>Email</th>
-                  <th>Cartoon name</th>
+                  <th>Full Name</th>
+                  <th>E-mail</th>
+                  <th>Cartoon Name</th>
                 </tr>
               </thead>
               <tbody>
-                {this.state.request_cartoon.map(cartoon =>
+                {this.state.cartoons.map(cartoon =>
                   <tr>
                     <td>{cartoon.fullname}</td>
                     <td>{cartoon.email}</td>
-                    <td>{cartoon.cartoon_name}</td>
+                    <td>{cartoon.cartoonName}</td>
                   </tr>
                 )}
               </tbody>
