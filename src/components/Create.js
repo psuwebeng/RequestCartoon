@@ -10,7 +10,7 @@ class Create extends Component {
     this.state = {
       fullname: '',
       email: '',
-      cartoon_name: ''
+      cartoonName: ''
     };
   }
   onChange = (e) => {
@@ -22,51 +22,51 @@ class Create extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { fullname, email, cartoon_name } = this.state;
+    const { fullname, email, cartoonName } = this.state;
 
     this.ref.add({
       fullname,
       email,
-      cartoon_name
+      cartoonName
     }).then((docRef) => {
       this.setState({
         fullname: '',
         email: '',
-        cartoon_name: ''
+        cartoonName: ''
       });
       this.props.history.push("/")
     })
     .catch((error) => {
-      console.error("Error adding cartoon: ", error);
+      console.error("Error adding document: ", error);
     });
   }
 
   render() {
-    const { fullname, email, cartoon_name } = this.state;
+    const { fullname, email, cartoonName } = this.state;
     return (
-      <div class="container">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
+      <div className="container">
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            <h3 className="panel-title">
               ADD CARTOON
             </h3>
           </div>
-          <div class="panel-body">
-            <h4><Link to="/" class="btn btn-primary">Cartoon List</Link></h4>
+          <div className="panel-body">
+            <h4><Link to="/" className="btn btn-primary">Cartoon Lists</Link></h4>
             <form onSubmit={this.onSubmit}>
-              <div class="form-group">
-                <label for="title">Fullname:</label>
-                <input type="text" class="form-control" name="fullname" value={fullname} onChange={this.onChange} placeholder="Fullname" />
+              <div className="form-group">
+                <label htmlFor="fullname">Full name:</label>
+                <input type="text" className="form-control" name="fullname" value={fullname} onChange={this.onChange} placeholder="Full Name" />
               </div>
-              <div class="form-group">
-                <label for="description">Email:</label>
-                <textArea class="form-control" name="email" onChange={this.onChange} placeholder="Email" cols="80" rows="3">{email}</textArea>
+              <div className="form-group">
+                <label htmlFor="email">E-mail:</label>
+                <input type="text" className="form-control" name="email" value={email} onChange={this.onChange} placeholder="E-mail" />
               </div>
-              <div class="form-group">
-                <label for="author">Cartoon name:</label>
-                <input type="text" class="form-control" name="cartoon_name" value={cartoon_name} onChange={this.onChange} placeholder="Cartoon name" />
+              <div className="form-group">
+                <label htmlFor="cartoonName">Cartoon Name:</label>
+                <input type="text" className="form-control" name="cartoonName" value={cartoonName} onChange={this.onChange} placeholder="Cartoon Name" />
               </div>
-              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="submit" className="btn btn-success">Submit</button>
             </form>
           </div>
         </div>
